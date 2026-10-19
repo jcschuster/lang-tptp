@@ -1,0 +1,44 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "tptp",
+      "camelcase": "TPTP",
+      "title": "TPTP",
+      "scope": "source.tptp",
+      "file-types": [
+        "s",
+        "p",
+        "ax"
+      ],
+      "injection-regex": "^tptp$",
+      "class-name": "TreeSitterTptp"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "TPTP grammar for tree-sitter, generated from the TPTP SyntaxBNF",
+    "authors": [
+      {
+        "name": "Johannes Schuster",
+        "email": "johannes.c.schuster@proton.me",
+        "url": "https://jcschuster.de"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/jcschuster/lang-tptp",
+      "funding": ""
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": false,
+    "java": false,
+    "node": true,
+    "python": false,
+    "rust": false,
+    "swift": false,
+    "zig": false
+  }
+}
