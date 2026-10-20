@@ -37,9 +37,10 @@ three packages to npm and creates the GitHub release `vX.Y.Z` (with
 - **Anything else:** run `.github/scripts/version.sh X.Y.Z`, add a `## [X.Y.Z] - date`
   section to `CHANGELOG.md`, open a pull request and label it `release`.
 
-Repository secrets: `NPM_TOKEN` (or npm trusted publishing for `release.yml`, once the
-packages exist on npm), and optionally `TPTP_PR_TOKEN`, a fine-grained token with contents
-and pull-request write access, so that the bot's pull requests run CI.
+npm publishing uses trusted publishing: each package trusts `release.yml` of this
+repository, so no npm token is stored. The repository secret `TPTP_PR_TOKEN`, a
+fine-grained token with contents and pull-request write access, lets the bot's pull
+requests run CI.
 
 ## Licence
 

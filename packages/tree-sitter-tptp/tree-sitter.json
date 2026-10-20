@@ -16,7 +16,7 @@
     }
   ],
   "metadata": {
-    "version": "0.1.0",
+    "version": "0.1.1",
     "license": "MIT",
     "description": "TPTP grammar for tree-sitter, generated from the TPTP SyntaxBNF",
     "authors": [
