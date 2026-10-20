@@ -39,8 +39,9 @@ if ! [[ $new =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
 fi
 
 # `tree-sitter version` updates package.json, tree-sitter.json, CMakeLists.txt and the
-# Makefile together.
-(cd "$ts" && tree-sitter version "$new" >&2)
+# Makefile together. `tree-sitter generate` then copies the version into src/parser.c,
+# which would otherwise be stale and fail the generated check.
+(cd "$ts" && tree-sitter version "$new" >&2 && tree-sitter generate >&2)
 
 for package in codemirror-lang-tptp monaco-tptp; do
   sed -i -E "0,/\"version\": \"[^\"]+\"/s//\"version\": \"$new\"/" "packages/$package/package.json"
