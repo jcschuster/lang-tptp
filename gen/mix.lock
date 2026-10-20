@@ -1,3 +1,4 @@
 %{
-  "tptp": {:hex, :tptp, "0.2.1", "855b6923f46b54b3939d2df57cbcf16b694d4a32e2f5b912f08aaed797dd8de1", [:mix], [], "hexpm", "5d8ff59d8c4786adc3735ed18d444777cd0a49692cd8520b3bbc5d209e06f2a7"},
+  "stream_data": {:hex, :stream_data, "1.4.0", "026f929db613aabea6208012ae9b8970d3fd5f88b3bdf26831bc536f98c42036", [:mix], [], "hexpm", "2b0ee3a340dcce1c8cf6302a763ee757d1e01c54d6e16d9069062509d68b1dc9"},
+  "tptp": {:hex, :tptp, "0.3.0", "a5e8554460b78a58aabe311cd5a1356fd0dba157b700f4876e13351d8beb7751", [:mix], [], "hexpm", "bb8e9fa98deb36ba9489fcdc187202bdfb95fbf4cd06ddf007c19e50492ba0ce"},
 }

@@ -1,0 +1,190 @@
+========================================
+FOF statement
+========================================
+
+fof(ax1, axiom, ! [X] : p(X)).
+
+---
+
+(TPTP_file
+  (fof_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (fof_quantified_formula
+      (fof_quantifier)
+      (fof_variable_list
+        (variable
+          (upper_word)))
+      (fof_plain_term
+        (functor
+          (lower_word))
+        (fof_arguments
+          (variable
+            (upper_word)))))))
+
+========================================
+Statement keyword as name, role-like word and atom
+========================================
+
+fof(fof, axiom, fof).
+
+---
+
+(TPTP_file
+  (fof_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (fof_plain_term
+      (constant
+        (functor
+          (lower_word))))))
+
+========================================
+CNF clause
+========================================
+
+cnf(c1, negated_conjecture, ~ p(X) | q(f(X))).
+
+---
+
+(TPTP_file
+  (cnf_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (cnf_disjunction
+      (cnf_disjunction
+        (fof_plain_term
+          (functor
+            (lower_word))
+          (fof_arguments
+            (variable
+              (upper_word)))))
+      (fof_plain_term
+        (functor
+          (lower_word))
+        (fof_arguments
+          (fof_plain_term
+            (functor
+              (lower_word))
+            (fof_arguments
+              (variable
+                (upper_word)))))))))
+
+========================================
+Include with a formula selection
+========================================
+
+include('Axioms/GRP001-0.ax', [a, b]).
+
+---
+
+(TPTP_file
+  (include
+    (file_name
+      (single_quoted))
+    (include_optionals
+      (formula_selection
+        (name_list
+          (name
+            (lower_word))
+          (name_list
+            (name
+              (lower_word))))))))
+
+========================================
+Include with star
+========================================
+
+include('Axioms/GRP001-0.ax', *).
+
+---
+
+(TPTP_file
+  (include
+    (file_name
+      (single_quoted))
+    (include_optionals
+      (formula_selection))))
+
+========================================
+TPI instruction
+========================================
+
+tpi(start, start, $true).
+
+---
+
+(TPTP_file
+  (tpi_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (fof_defined_plain_term
+      (defined_constant
+        (defined_functor
+          (dollar_word))))))
+
+========================================
+TCF clause
+========================================
+
+tcf(c1, axiom, ! [X: $i] : ( p(X) | ~ q(X ))).
+
+---
+
+(TPTP_file
+  (tcf_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (tcf_quantified_formula
+      (tff_variable_list
+        (tff_typed_variable
+          (variable
+            (upper_word))
+          (tff_atomic_type
+            (defined_type
+              (dollar_word)))))
+      (cnf_disjunction
+        (cnf_disjunction
+          (fof_plain_term
+            (functor
+              (lower_word))
+            (fof_arguments
+              (variable
+                (upper_word)))))
+        (fof_plain_term
+          (functor
+            (lower_word))
+          (fof_arguments
+            (variable
+              (upper_word))))))))
+
+========================================
+Role with a general term
+========================================
+
+fof(a, axiom-useful, p).
+
+---
+
+(TPTP_file
+  (fof_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word)
+      (general_term
+        (lower_word)))
+    (fof_plain_term
+      (constant
+        (functor
+          (lower_word))))))

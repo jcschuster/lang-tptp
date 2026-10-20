@@ -1,0 +1,148 @@
+name: tptp
+
+# Looks each night for a `tptp` on Hex newer than the one in gen/mix.lock, and opens a
+# pull request that moves to it, regenerates every grammar from the BNF it vendors, and
+# bumps the packages' version: minor when the new BNF removes a rule or an alternative
+# (or generation fails and needs a hand-written fix), patch when it only adds. Merging
+# that pull request publishes the release; see release.yml. When a new `tptp` changes
+# no generated file, the pull request only moves the dependency and releases nothing.
+#
+# A new BNF can rename rules that hand-written code names (gen/categories.exs, the
+# Lezer node names in packages/codemirror-lang-tptp/src/index.ts, queries/folds.scm),
+# and not every stale name fails a test. So the release waits for a review, and the
+# pull request says what to review.
+#
+# A pull request opened with GITHUB_TOKEN does not start other workflows, so ci would
+# not run on it. Set a TPTP_PR_TOKEN secret (a fine-grained token with contents and
+# pull-request write access) to have it run; without one, the pull request is still
+# opened and the tests below are its only check.
+
+on:
+  schedule:
+    # An hour after tptp's own nightly BNF check.
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: tptp
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.TPTP_PR_TOKEN || secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.TPTP_PR_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - uses: cachix/install-nix-action@v31
+
+      - name: Prepare the devshell
+        run: nix develop --command bash -c 'cd gen && mix local.hex --force && mix local.rebar --force'
+
+      - name: Move to a newer tptp, if there is one
+        id: bump
+        run: nix develop --command .github/scripts/tptp-bump.sh "$RUNNER_TEMP/review.md"
+
+      # One pull request per tptp version: once its branch exists, later nights leave
+      # it to the review.
+      - name: Skip a version already proposed
+        id: fresh
+        if: steps.bump.outputs.tptp != ''
+        env:
+          TPTP: ${{ steps.bump.outputs.tptp }}
+        run: |
+          if git ls-remote --exit-code --heads origin "tptp-v$TPTP"; then
+            echo "branch tptp-v$TPTP exists; nothing to do"
+            echo "open=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "open=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Test the regenerated grammars
+        id: test
+        if: steps.fresh.outputs.open == 'true'
+        run: |
+          set +e
+          nix develop --command .github/scripts/test-all.sh 2>&1 | tee "$RUNNER_TEMP/test.log"
+          echo "status=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Open the pull request
+        if: steps.fresh.outputs.open == 'true'
+        env:
+          TPTP: ${{ steps.bump.outputs.tptp }}
+          OLD: ${{ steps.bump.outputs.old }}
+          BNF: ${{ steps.bump.outputs.bnf }}
+          OLD_BNF: ${{ steps.bump.outputs.old_bnf }}
+          GENERATED: ${{ steps.bump.outputs.generated }}
+          VERSION: ${{ steps.bump.outputs.version }}
+          BUMP: ${{ steps.bump.outputs.bump }}
+          TEST_STATUS: ${{ steps.test.outputs.status }}
+        run: |
+          branch="tptp-v$TPTP"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add -A
+
+          if [ -n "$VERSION" ]; then
+            title="tptp $TPTP (BNF v$BNF), release $VERSION"
+            label=release
+          else
+            title="tptp $TPTP"
+            label=dependencies
+          fi
+          git commit -m "$title"
+          git push origin "$branch"
+
+          if [ "$GENERATED" = ok ] && [ "$TEST_STATUS" = 0 ]; then
+            verdict="Generation and every test pass."
+            draft=()
+          else
+            verdict="Something fails, so this is opened as a draft: fix it on this branch before merging."
+            draft=(--draft)
+          fi
+
+          {
+            if [ "$BNF" = "$OLD_BNF" ]; then
+              echo "\`tptp\` $TPTP is on Hex. This moves \`gen/\` to it from $OLD; it vendors the same BNF, v$BNF."
+            else
+              echo "\`tptp\` $TPTP is on Hex, with TPTP BNF v$BNF. This moves \`gen/\` to it from $OLD (BNF v$OLD_BNF), and regenerates every grammar."
+            fi
+            echo
+            if [ -n "$VERSION" ]; then
+              echo "It bumps the packages to $VERSION, a $BUMP release, with a CHANGELOG section quoting the BNF's own notes. **Merging this publishes \`tree-sitter-tptp\`, \`codemirror-lang-tptp\` and \`monaco-tptp\` $VERSION to npm and creates the GitHub release \`v$VERSION\`.** Edit the CHANGELOG section here before merging; it becomes the release notes."
+            else
+              echo "No generated file changes, so this releases nothing."
+            fi
+            echo
+            echo "$verdict"
+            echo
+            echo '```text'
+            if [ "$GENERATED" != ok ]; then
+              echo "mix lang_tptp.gen or tree-sitter generate failed; see the workflow log."
+            fi
+            grep -E '^(PASS|FAIL) ' "$RUNNER_TEMP/test.log" || tail -n 5 "$RUNNER_TEMP/test.log"
+            echo '```'
+            echo
+            echo "## To review"
+            echo
+            echo "A rule the BNF renamed or dropped is a node name that disappears; hand-written code that names it silently stops matching. Every hit below is one to rename or remove."
+            echo
+            cat "$RUNNER_TEMP/review.md"
+            echo
+            echo "Rerun the corpus comparison (the \`corpus\` workflow, or \`tools/differential\`) if the BNF changed what parses."
+          } > "$RUNNER_TEMP/body.md"
+
+          gh label create release --color 0e8a16 \
+            --description "Merging publishes the version in the packages" 2>/dev/null || true
+          gh label create dependencies --color 0366d6 \
+            --description "Moves a dependency" 2>/dev/null || true
+          gh pr create "${draft[@]}" --base main --head "$branch" --label "$label" \
+            --title "$title" --body-file "$RUNNER_TEMP/body.md"

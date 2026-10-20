@@ -1,0 +1,35 @@
+# Fails when a generated file is stale: regenerates everything from the BNF that the
+# pinned `tptp` vendors, runs `tree-sitter generate`, and checks `git diff`.
+name: generated
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  generated:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: cachix/install-nix-action@v31
+      - name: Regenerate
+        run: |
+          nix develop --command bash -euo pipefail -c '
+            cd gen
+            mix local.hex --force
+            mix deps.get
+            mix lang_tptp.gen
+            cd ../packages/tree-sitter-tptp
+            tree-sitter generate
+          '
+      # `git status` also catches generated files that are new or were never committed,
+      # which `git diff` alone would miss.
+      - name: Check for differences
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            git diff
+            echo "Generated files are stale: run 'mix lang_tptp.gen' and 'tree-sitter generate', then commit." >&2
+            exit 1
+          fi

@@ -1,0 +1,52 @@
+{
+  "name": "monaco-tptp",
+  "version": "0.1.0",
+  "description": "TPTP language support for Monaco, generated from the TPTP SyntaxBNF",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "NOTICE"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcschuster/lang-tptp.git",
+    "directory": "packages/monaco-tptp"
+  },
+  "author": {
+    "name": "Johannes Schuster",
+    "email": "johannes.c.schuster@proton.me",
+    "url": "https://jcschuster.de"
+  },
+  "license": "MIT",
+  "tptp": {
+    "bnf": "9.3.1.6"
+  },
+  "keywords": [
+    "monaco",
+    "monarch",
+    "tptp"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepare": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "monaco-editor": ">=0.40.0"
+  },
+  "devDependencies": {
+    "jsdom": "^30.1.3",
+    "monaco-editor": "^0.57.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}

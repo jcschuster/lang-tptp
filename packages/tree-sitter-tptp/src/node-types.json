@@ -1,12 +1,6039 @@
 [
   {
-    "type": "source_file",
+    "type": "TPTP_file",
     "named": true,
     "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "cnf_annotated",
+          "named": true
+        },
+        {
+          "type": "fof_annotated",
+          "named": true
+        },
+        {
+          "type": "include",
+          "named": true
+        },
+        {
+          "type": "tcf_annotated",
+          "named": true
+        },
+        {
+          "type": "tff_annotated",
+          "named": true
+        },
+        {
+          "type": "thf_annotated",
+          "named": true
+        },
+        {
+          "type": "tpi_annotated",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "annotations",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "file_source",
+          "named": true
+        },
+        {
+          "type": "inference_record",
+          "named": true
+        },
+        {
+          "type": "internal_source",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optional_info",
+          "named": true
+        },
+        {
+          "type": "sources",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "assoc_connective",
+    "named": true,
     "fields": {}
   },
   {
-    "type": "hello",
+    "type": "cnf_annotated",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotations",
+          "named": true
+        },
+        {
+          "type": "cnf_disjunction",
+          "named": true
+        },
+        {
+          "type": "formula_role",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cnf_disjunction",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "cnf_disjunction",
+          "named": true
+        },
+        {
+          "type": "fof_defined_infix_formula",
+          "named": true
+        },
+        {
+          "type": "fof_defined_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_infix_unary",
+          "named": true
+        },
+        {
+          "type": "fof_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_system_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "constant",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "functor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "defined_constant",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "defined_functor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "defined_functor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dollar_word",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "defined_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dollar_word",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "file_info",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "file_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "back_quoted",
+          "named": true
+        },
+        {
+          "type": "lower_word",
+          "named": true
+        },
+        {
+          "type": "single_quoted",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "file_source",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "file_info",
+          "named": true
+        },
+        {
+          "type": "file_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_and_formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "fof_and_formula",
+          "named": true
+        },
+        {
+          "type": "fof_binary_pair",
+          "named": true
+        },
+        {
+          "type": "fof_defined_infix_formula",
+          "named": true
+        },
+        {
+          "type": "fof_defined_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_infix_unary",
+          "named": true
+        },
+        {
+          "type": "fof_or_formula",
+          "named": true
+        },
+        {
+          "type": "fof_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "fof_system_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_annotated",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotations",
+          "named": true
+        },
+        {
+          "type": "fof_and_formula",
+          "named": true
+        },
+        {
+          "type": "fof_binary_pair",
+          "named": true
+        },
+        {
+          "type": "fof_defined_infix_formula",
+          "named": true
+        },
+        {
+          "type": "fof_defined_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_infix_unary",
+          "named": true
+        },
+        {
+          "type": "fof_or_formula",
+          "named": true
+        },
+        {
+          "type": "fof_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "fof_sequent",
+          "named": true
+        },
+        {
+          "type": "fof_system_term",
+          "named": true
+        },
+        {
+          "type": "formula_role",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_arguments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "fof_arguments",
+          "named": true
+        },
+        {
+          "type": "fof_defined_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_system_term",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_binary_pair",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fof_and_formula",
+          "named": true
+        },
+        {
+          "type": "fof_binary_pair",
+          "named": true
+        },
+        {
+          "type": "fof_defined_infix_formula",
+          "named": true
+        },
+        {
+          "type": "fof_defined_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_infix_unary",
+          "named": true
+        },
+        {
+          "type": "fof_or_formula",
+          "named": true
+        },
+        {
+          "type": "fof_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "fof_system_term",
+          "named": true
+        },
+        {
+          "type": "nonassoc_connective",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_defined_infix_formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "fof_defined_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_system_term",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_defined_plain_term",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "defined_functor",
+          "named": true
+        },
+        {
+          "type": "fof_arguments",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_formula_tuple",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "fof_formula_tuple_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_formula_tuple_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "fof_and_formula",
+          "named": true
+        },
+        {
+          "type": "fof_binary_pair",
+          "named": true
+        },
+        {
+          "type": "fof_defined_infix_formula",
+          "named": true
+        },
+        {
+          "type": "fof_defined_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_infix_unary",
+          "named": true
+        },
+        {
+          "type": "fof_or_formula",
+          "named": true
+        },
+        {
+          "type": "fof_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "fof_system_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_infix_unary",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "fof_defined_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_system_term",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_or_formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "fof_and_formula",
+          "named": true
+        },
+        {
+          "type": "fof_binary_pair",
+          "named": true
+        },
+        {
+          "type": "fof_defined_infix_formula",
+          "named": true
+        },
+        {
+          "type": "fof_defined_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_infix_unary",
+          "named": true
+        },
+        {
+          "type": "fof_or_formula",
+          "named": true
+        },
+        {
+          "type": "fof_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "fof_system_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_plain_term",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "fof_arguments",
+          "named": true
+        },
+        {
+          "type": "functor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_quantified_formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fof_and_formula",
+          "named": true
+        },
+        {
+          "type": "fof_binary_pair",
+          "named": true
+        },
+        {
+          "type": "fof_defined_infix_formula",
+          "named": true
+        },
+        {
+          "type": "fof_defined_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_infix_unary",
+          "named": true
+        },
+        {
+          "type": "fof_or_formula",
+          "named": true
+        },
+        {
+          "type": "fof_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "fof_quantifier",
+          "named": true
+        },
+        {
+          "type": "fof_system_term",
+          "named": true
+        },
+        {
+          "type": "fof_variable_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_quantifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "fof_sequent",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fof_formula_tuple",
+          "named": true
+        },
+        {
+          "type": "fof_sequent",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_system_term",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fof_arguments",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "system_functor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fof_variable_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fof_variable_list",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "formula_role",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "general_term",
+          "named": true
+        },
+        {
+          "type": "lower_word",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "formula_selection",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "name_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "functor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "back_quoted",
+          "named": true
+        },
+        {
+          "type": "lower_word",
+          "named": true
+        },
+        {
+          "type": "single_quoted",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "general_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "back_quoted",
+          "named": true
+        },
+        {
+          "type": "general_terms",
+          "named": true
+        },
+        {
+          "type": "lower_word",
+          "named": true
+        },
+        {
+          "type": "single_quoted",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "general_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "general_terms",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "general_term",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "back_quoted",
+          "named": true
+        },
+        {
+          "type": "cnf_disjunction",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "fof_and_formula",
+          "named": true
+        },
+        {
+          "type": "fof_binary_pair",
+          "named": true
+        },
+        {
+          "type": "fof_defined_infix_formula",
+          "named": true
+        },
+        {
+          "type": "fof_defined_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_infix_unary",
+          "named": true
+        },
+        {
+          "type": "fof_or_formula",
+          "named": true
+        },
+        {
+          "type": "fof_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "fof_sequent",
+          "named": true
+        },
+        {
+          "type": "fof_system_term",
+          "named": true
+        },
+        {
+          "type": "general_function",
+          "named": true
+        },
+        {
+          "type": "general_list",
+          "named": true
+        },
+        {
+          "type": "general_term",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "lower_word",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "single_quoted",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_atom_typing",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_subtype",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_atom_typing",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_subtype",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "general_terms",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "general_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "include",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "file_name",
+          "named": true
+        },
+        {
+          "type": "include_optionals",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "include_optionals",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "formula_selection",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inference_record",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "general_list",
+          "named": true
+        },
+        {
+          "type": "inference_rule",
+          "named": true
+        },
+        {
+          "type": "parents",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inference_rule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "back_quoted",
+          "named": true
+        },
+        {
+          "type": "lower_word",
+          "named": true
+        },
+        {
+          "type": "single_quoted",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "internal_source",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "general_list",
+          "named": true
+        },
+        {
+          "type": "intro_type",
+          "named": true
+        },
+        {
+          "type": "parents",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "intro_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "back_quoted",
+          "named": true
+        },
+        {
+          "type": "lower_word",
+          "named": true
+        },
+        {
+          "type": "single_quoted",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "back_quoted",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "lower_word",
+          "named": true
+        },
+        {
+          "type": "single_quoted",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "name_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "name_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nhf_long_connective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dollar_dollar_word",
+          "named": true
+        },
+        {
+          "type": "dollar_word",
+          "named": true
+        },
+        {
+          "type": "nhf_parameter_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nhf_parameter_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_parameter_list",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "txf_tuple",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nonassoc_connective",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "ntf_short_connective",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "nxf_atom",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "nxf_long_connective",
+          "named": true
+        },
+        {
+          "type": "tff_arguments",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nxf_long_connective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dollar_dollar_word",
+          "named": true
+        },
+        {
+          "type": "dollar_word",
+          "named": true
+        },
+        {
+          "type": "nxf_parameter_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nxf_parameter_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nxf_parameter_list",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "txf_tuple",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "optional_info",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "general_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parent_details",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "general_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parent_info",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "file_source",
+          "named": true
+        },
+        {
+          "type": "inference_record",
+          "named": true
+        },
+        {
+          "type": "internal_source",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "parent_details",
+          "named": true
+        },
+        {
+          "type": "sources",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parent_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parent_info",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parents",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "parent_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "sources",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "file_source",
+          "named": true
+        },
+        {
+          "type": "inference_record",
+          "named": true
+        },
+        {
+          "type": "internal_source",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "sources",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "system_constant",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "system_functor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "system_functor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dollar_dollar_word",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "system_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dollar_dollar_word",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tcf_annotated",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotations",
+          "named": true
+        },
+        {
+          "type": "cnf_disjunction",
+          "named": true
+        },
+        {
+          "type": "formula_role",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "tcf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_atom_typing",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tcf_quantified_formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "cnf_disjunction",
+          "named": true
+        },
+        {
+          "type": "tcf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_variable_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tf1_quantified_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tf1_quantified_type",
+          "named": true
+        },
+        {
+          "type": "tff_atomic_type",
+          "named": true
+        },
+        {
+          "type": "tff_mapping_type",
+          "named": true
+        },
+        {
+          "type": "tff_variable_list",
+          "named": true
+        },
+        {
+          "type": "type_quantifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_and_formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_annotated",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotations",
+          "named": true
+        },
+        {
+          "type": "formula_role",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_atom_typing",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_subtype",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_arguments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "txf_tuple",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_atom_typing",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "tf1_quantified_type",
+          "named": true
+        },
+        {
+          "type": "tff_atom_typing",
+          "named": true
+        },
+        {
+          "type": "tff_atomic_type",
+          "named": true
+        },
+        {
+          "type": "tff_mapping_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_atom_typing_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tff_atom_typing",
+          "named": true
+        },
+        {
+          "type": "tff_atom_typing_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_atomic_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "defined_type",
+          "named": true
+        },
+        {
+          "type": "tff_atomic_type",
+          "named": true
+        },
+        {
+          "type": "tff_type_arguments",
+          "named": true
+        },
+        {
+          "type": "tff_type_list",
+          "named": true
+        },
+        {
+          "type": "type_constant",
+          "named": true
+        },
+        {
+          "type": "type_functor",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_binary_pair",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "nonassoc_connective",
+          "named": true
+        },
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_defined_infix",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "txf_tuple",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_defined_plain",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "defined_functor",
+          "named": true
+        },
+        {
+          "type": "nxf_atom",
+          "named": true
+        },
+        {
+          "type": "tff_arguments",
+          "named": true
+        },
+        {
+          "type": "txf_let",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_infix_unary",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "txf_tuple",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_mapping_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tff_atomic_type",
+          "named": true
+        },
+        {
+          "type": "tff_xprod_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_or_formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_plain_atomic",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "functor",
+          "named": true
+        },
+        {
+          "type": "tff_arguments",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_prefix_unary",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_unary_connective",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_quantified_formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_quantifier",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_variable_list",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_quantifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "fof_quantifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_subtype",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "system_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_system_atomic",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "system_functor",
+          "named": true
+        },
+        {
+          "type": "tff_arguments",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_type_arguments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tff_atomic_type",
+          "named": true
+        },
+        {
+          "type": "tff_type_arguments",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_type_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tf1_quantified_type",
+          "named": true
+        },
+        {
+          "type": "tff_atomic_type",
+          "named": true
+        },
+        {
+          "type": "tff_mapping_type",
+          "named": true
+        },
+        {
+          "type": "tff_type_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_typed_variable",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tff_atomic_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_unary_connective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "ntf_short_connective",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_variable_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tff_typed_variable",
+          "named": true
+        },
+        {
+          "type": "tff_variable_list",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tff_xprod_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tff_atomic_type",
+          "named": true
+        },
+        {
+          "type": "tff_xprod_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "th0_quantifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "th1_defined_term",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "thf_and_formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_annotated",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotations",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "formula_role",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_atom_typing",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_subtype",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_apply_formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_atom_typing",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_atom_typing",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_atom_typing_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "thf_atom_typing",
+          "named": true
+        },
+        {
+          "type": "thf_atom_typing_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_binary_pair",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "nonassoc_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_conn_term",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "assoc_connective",
+          "named": true
+        },
+        {
+          "type": "nonassoc_connective",
+          "named": true
+        },
+        {
+          "type": "thf_unary_connective",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_defined_infix",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_fof_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "defined_functor",
+          "named": true
+        },
+        {
+          "type": "functor",
+          "named": true
+        },
+        {
+          "type": "system_functor",
+          "named": true
+        },
+        {
+          "type": "thf_formula_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_formula_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_infix_unary",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_let",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_atom_typing",
+          "named": true
+        },
+        {
+          "type": "thf_atom_typing_list",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_let_defn",
+          "named": true
+        },
+        {
+          "type": "thf_let_defn_list",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_let_defn",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_let_defn_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "thf_let_defn",
+          "named": true
+        },
+        {
+          "type": "thf_let_defn_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_mapping_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_or_formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_prefix_unary",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_unary_connective",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_quantification",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tff_quantifier",
+          "named": true
+        },
+        {
+          "type": "th0_quantifier",
+          "named": true
+        },
+        {
+          "type": "thf_variable_list",
+          "named": true
+        },
+        {
+          "type": "type_quantifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_quantified_formula",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantification",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_sequent",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "thf_tuple",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_subtype",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "system_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_tuple",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "thf_formula_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_typed_variable",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_unary_connective",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "ntf_short_connective",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_union_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_variable_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "thf_typed_variable",
+          "named": true
+        },
+        {
+          "type": "thf_variable_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "thf_xprod_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "defined_constant",
+          "named": true
+        },
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "nhf_long_connective",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "system_constant",
+          "named": true
+        },
+        {
+          "type": "th1_defined_term",
+          "named": true
+        },
+        {
+          "type": "thf_and_formula",
+          "named": true
+        },
+        {
+          "type": "thf_apply_formula",
+          "named": true
+        },
+        {
+          "type": "thf_binary_pair",
+          "named": true
+        },
+        {
+          "type": "thf_conn_term",
+          "named": true
+        },
+        {
+          "type": "thf_defined_infix",
+          "named": true
+        },
+        {
+          "type": "thf_definition",
+          "named": true
+        },
+        {
+          "type": "thf_fof_function",
+          "named": true
+        },
+        {
+          "type": "thf_infix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_let",
+          "named": true
+        },
+        {
+          "type": "thf_mapping_type",
+          "named": true
+        },
+        {
+          "type": "thf_or_formula",
+          "named": true
+        },
+        {
+          "type": "thf_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "thf_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "thf_sequent",
+          "named": true
+        },
+        {
+          "type": "thf_tuple",
+          "named": true
+        },
+        {
+          "type": "thf_union_type",
+          "named": true
+        },
+        {
+          "type": "thf_xprod_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tpi_annotated",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotations",
+          "named": true
+        },
+        {
+          "type": "fof_and_formula",
+          "named": true
+        },
+        {
+          "type": "fof_binary_pair",
+          "named": true
+        },
+        {
+          "type": "fof_defined_infix_formula",
+          "named": true
+        },
+        {
+          "type": "fof_defined_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_infix_unary",
+          "named": true
+        },
+        {
+          "type": "fof_or_formula",
+          "named": true
+        },
+        {
+          "type": "fof_plain_term",
+          "named": true
+        },
+        {
+          "type": "fof_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "fof_sequent",
+          "named": true
+        },
+        {
+          "type": "fof_system_term",
+          "named": true
+        },
+        {
+          "type": "formula_role",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "txf_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "txf_tuple",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "txf_let",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_atom_typing",
+          "named": true
+        },
+        {
+          "type": "tff_atom_typing_list",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_let_defn",
+          "named": true
+        },
+        {
+          "type": "txf_let_defn_list",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "txf_tuple",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "txf_let_defn",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "distinct_object",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "rational",
+          "named": true
+        },
+        {
+          "type": "real",
+          "named": true
+        },
+        {
+          "type": "tff_and_formula",
+          "named": true
+        },
+        {
+          "type": "tff_binary_pair",
+          "named": true
+        },
+        {
+          "type": "tff_defined_infix",
+          "named": true
+        },
+        {
+          "type": "tff_defined_plain",
+          "named": true
+        },
+        {
+          "type": "tff_infix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_or_formula",
+          "named": true
+        },
+        {
+          "type": "tff_plain_atomic",
+          "named": true
+        },
+        {
+          "type": "tff_prefix_unary",
+          "named": true
+        },
+        {
+          "type": "tff_quantified_formula",
+          "named": true
+        },
+        {
+          "type": "tff_system_atomic",
+          "named": true
+        },
+        {
+          "type": "txf_definition",
+          "named": true
+        },
+        {
+          "type": "txf_sequent",
+          "named": true
+        },
+        {
+          "type": "txf_tuple",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "txf_let_defn_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "txf_let_defn",
+          "named": true
+        },
+        {
+          "type": "txf_let_defn_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "txf_sequent",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "txf_tuple",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "txf_tuple",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "tff_arguments",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_constant",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "type_functor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_functor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "back_quoted",
+          "named": true
+        },
+        {
+          "type": "lower_word",
+          "named": true
+        },
+        {
+          "type": "single_quoted",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_quantifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "variable",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "upper_word",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "!",
+    "named": false
+  },
+  {
+    "type": "!!",
+    "named": false
+  },
+  {
+    "type": "!=",
+    "named": false
+  },
+  {
+    "type": "!>",
+    "named": false
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "$cnf",
+    "named": false
+  },
+  {
+    "type": "$fof",
+    "named": false
+  },
+  {
+    "type": "$fot",
+    "named": false
+  },
+  {
+    "type": "$let",
+    "named": false
+  },
+  {
+    "type": "$tff",
+    "named": false
+  },
+  {
+    "type": "$thf",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": "(.)",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "-->",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": ":=",
+    "named": false
+  },
+  {
+    "type": "<.>",
+    "named": false
+  },
+  {
+    "type": "<<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "<=>",
+    "named": false
+  },
+  {
+    "type": "<~>",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "==",
+    "named": false
+  },
+  {
+    "type": "=>",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": "?",
+    "named": false
+  },
+  {
+    "type": "?*",
+    "named": false
+  },
+  {
+    "type": "??",
+    "named": false
+  },
+  {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "@+",
+    "named": false
+  },
+  {
+    "type": "@-",
+    "named": false
+  },
+  {
+    "type": "@=",
+    "named": false
+  },
+  {
+    "type": "@@+",
+    "named": false
+  },
+  {
+    "type": "@@-",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "[.]",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "back_quoted",
+    "named": true
+  },
+  {
+    "type": "cnf",
+    "named": false
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "extra": true
+  },
+  {
+    "type": "distinct_object",
+    "named": true
+  },
+  {
+    "type": "dollar_dollar_word",
+    "named": true
+  },
+  {
+    "type": "dollar_word",
+    "named": true
+  },
+  {
+    "type": "file",
+    "named": false
+  },
+  {
+    "type": "fof",
+    "named": false
+  },
+  {
+    "type": "include",
+    "named": false
+  },
+  {
+    "type": "inference",
+    "named": false
+  },
+  {
+    "type": "integer",
+    "named": true
+  },
+  {
+    "type": "introduced",
+    "named": false
+  },
+  {
+    "type": "lower_word",
+    "named": true
+  },
+  {
+    "type": "rational",
+    "named": true
+  },
+  {
+    "type": "real",
+    "named": true
+  },
+  {
+    "type": "single_quoted",
+    "named": true
+  },
+  {
+    "type": "tcf",
+    "named": false
+  },
+  {
+    "type": "tff",
+    "named": false
+  },
+  {
+    "type": "thf",
+    "named": false
+  },
+  {
+    "type": "tpi",
+    "named": false
+  },
+  {
+    "type": "upper_word",
+    "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "{.}",
+    "named": false
+  },
+  {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  },
+  {
+    "type": "~",
+    "named": false
+  },
+  {
+    "type": "~&",
+    "named": false
+  },
+  {
+    "type": "~|",
     "named": false
   }
 ]

@@ -21,6 +21,7 @@
           pkgs.tree-sitter
           pkgs.python3
           pkgs.gnumake
+          pkgs.jq # .github/scripts
         ];
 
         MIX_REBAR3 = pkgs.lib.getExe beam.rebar3;

@@ -8,14 +8,14 @@ Editor language support for TPTP, generated from the TPTP World `SyntaxBNF`:
 | `codemirror-lang-tptp` | CodeMirror 6 language (Lezer) | Livebook smart cell (`kino_tptp`), web tools |
 | `monaco-tptp` | Monaco language (Monarch tokenizer + config) | Monaco-based web tools |
 
-Status: plan. Nothing below has been run against the BNF yet; statements about how the
-BNF will translate are expectations and are marked as such.
+Status: first implementation pass done — generator, all three packages, fixtures, the
+differential runner and CI. §3.4 records what the BNF actually needed.
 
 ---
 
 ## 1. Principles
 
-1. **One BNF frontend.** The generator reuses `Tptp.Bnf` from `jcschuster/tptp` (pinned).
+1. **One BNF frontend.** The generator reuses `Tptp.Bnf` from `tptp` (Hex, pinned by `mix.lock`).
    `lang-tptp` does not vendor its own copy of `SyntaxBNF`; the BNF version is whatever the
    pinned `tptp` vendors.
 2. **Layer discipline as in `tptp`.** `::=` → grammar, `::-`/`:::` → tokens, `:==` → not used.
@@ -38,7 +38,7 @@ lang-tptp/
 ├── flake.nix  flake.lock  .envrc          # devshell (§9)
 ├── package.json  pnpm-workspace.yaml  pnpm-lock.yaml
 ├── gen/                                    # Mix project: the generator
-│   ├── mix.exs                             # {:tptp, github: "jcschuster/tptp", ref: "<sha>"}
+│   ├── mix.exs                             # {:tptp, "~> 0.2.1"} from Hex
 │   ├── categories.exs                      # BNF symbol → highlight category (hand-written)
 │   ├── lib/lang_tptp/
 │   │   ├── ir.ex                           # Tptp.Bnf rules → grammar IR
@@ -120,8 +120,17 @@ accept/reject the same samples as the PCRE pattern from `Tptp.Bnf.Oracle.pattern
 | Statement keywords promoted by `Tptp.Splitter` | Probably none needed (state-dependent lexing) | `@extend` |
 | `$`-language markers kept as children | Not an issue: both produce concrete syntax trees with all tokens | Same |
 
-Each back-end exposes `departures/0`; the task prints them; a new conflict fails
-generation instead of being absorbed.
+Each back-end exposes `departures/0` (Lezer: `departures/1`, since it lists rule names);
+the task prints them; a new conflict fails generation instead of being absorbed.
+
+**Result (first pass, BNF 9.3.1.3; unchanged on 9.3.1.6).** tree-sitter needed no `conflicts` or `prec` entries.
+Its one departure admits `inference`/`introduced`/`file` as `<atomic_word>` (aliased to
+`lower_word`). With `word` set, the keyword wins wherever it is valid, and that includes
+parent lists such as `[file, inference]`. Lezer needed `@extend` for the ten lower-case
+keywords, `@specialize` for the six `$`-keywords, a token `@precedence` for numbers and
+`$`/`$$` words, and repetition in place of left-recursive chains and right-recursive lists.
+Lezer stops after a few hundred left-associative reductions in a row, and long `&` chains in
+the library reach that. `mix lang_tptp.gen` prints the full list.
 
 ### 3.5 Highlight table (`categories.exs`)
 
@@ -144,27 +153,19 @@ differ slightly); the table is the place to decide that once.
 
 ### 3.6 Coupling to `tptp`
 
-`gen/` depends on `Tptp.Bnf`, `Tptp.Bnf.Rule` and, for the oracle test, `Tptp.Bnf.Oracle`.
-These are internal to `tptp`. Pinning a commit makes this safe; the alternative is a
-versioned JSON export from `tptp` (`mix tptp.bnf.export`) as a stable interface (§10).
-
-For local work on both repositories, let `mix.exs` switch to a path dependency:
-
-```elixir
-defp tptp_dep do
-  case System.get_env("TPTP_PATH") do
-    nil -> {:tptp, github: "jcschuster/tptp", ref: "<sha>"}
-    path -> {:tptp, path: path}
-  end
-end
-```
+`gen/` depends on `Tptp.Bnf`, `Tptp.Bnf.Rule`, `Tptp.Token`, `Tptp.Bnf.Vocabulary`,
+`Tptp.Bnf.Generator.significant/0` and, for the oracle test, `Tptp.Bnf.Oracle`. These are
+internal to `tptp` but ship in the Hex package, and `mix.lock` pins the release, so a `tptp`
+upgrade is an explicit lockfile change whose effect `generated.yml` shows. The alternative is
+a versioned JSON export from `tptp` (`mix tptp.bnf.export`) as a stable interface (§10).
 
 ---
 
 ## 4. Shared rules for all packages
 
 - Package versions are independent of the BNF version. Each package records the BNF version
-  it was generated from (`package.json` → `"tptp": { "bnf": "9.3.1.3" }`, and in the README).
+  it was generated from (`package.json` → `"tptp": { "bnf": "9.3.1.6" }`, written by
+  `mix lang_tptp.gen`).
 - `fixtures/` holds small hand-picked files: every dialect (THF, TFF, TCF, FOF, CNF, TPI),
   `include`, annotations with `inference(…)`, TSTP derivations, and the edge cases from
   `tptp`'s tests (`fof(fof, axiom, p).`, `$let`, `$fot` vs `$fof`).
@@ -259,13 +260,19 @@ Monarch is not part of the differential test; it has no notion of accept/reject.
 All jobs run inside the flake devshell (`nix develop --command …`), so CI and local builds use
 the same tool versions.
 
+The set mirrors `tptp`'s workflows (`ci`, `generated`, `corpus`, a nightly dependency check,
+`release`), with a new `tptp` release in place of a new BNF as the trigger.
+
 | Workflow | Trigger | Steps |
 |---|---|---|
-| `generated.yml` | push, PR | `mix lang_tptp.gen` → `tree-sitter generate` (in `packages/tree-sitter-tptp`) → `git diff --exit-code` |
-| `ci.yml` | push, PR | `mix test` (gen); `tree-sitter test`, `tree-sitter build --wasm`; `pnpm -r build`; `pnpm -r test` |
-| `corpus.yml` | PR (paths), nightly, manual | download TPTP library (as in `tptp`), build packages, run §6.3 |
-| `release.yml` | release PR merged / tag | publish npm packages; attach `.wasm` to the GitHub release; optional crates.io |
-| `bump-tptp` | Renovate/Dependabot on the `tptp` dependency | PR that updates the pin; `generated.yml` then shows the grammar diff for a new BNF |
+| `generated.yml` | push to main, PR | `mix lang_tptp.gen` → `tree-sitter generate` (in `packages/tree-sitter-tptp`) → fail on any change, including new files (`git status --porcelain`) |
+| `ci.yml` | push to main, PR | gen: format, `compile --warnings-as-errors`, `mix test`; packages agree on their version; `tree-sitter test`, `tree-sitter build --wasm`; `pnpm -r build`; `pnpm -r test` |
+| `corpus.yml` | PR (paths), nightly, manual | download TPTP library (as in `tptp`), build packages, run §6.3 (one file in five on PRs, everything nightly) |
+| `tptp.yml` | nightly, manual | newer `tptp` on Hex → `.github/scripts/tptp-bump.sh` moves `gen/` to it, regenerates, bumps the version (minor when the BNF removes something, patch otherwise), writes the CHANGELOG section and review notes → `test-all.sh` → PR labelled `release` (draft if anything fails); a `tptp` release that changes no generated file gets a PR labelled `dependencies` that releases nothing |
+| `release.yml` | PR labelled `release` merged; manual (retry) | refuse a tagged version or one without a CHANGELOG section → `test-all.sh` → build `.wasm` → publish the three packages to npm (skipping versions already there) → GitHub release `vX.Y.Z` with the CHANGELOG section as notes and the `.wasm` attached |
+
+Secrets: `NPM_TOKEN` (or npm trusted publishing, once the packages exist), and optionally
+`TPTP_PR_TOKEN` so that the bot's pull requests start `ci` (as `BNF_PR_TOKEN` in `tptp`).
 
 **Releasing `tree-sitter-tptp` from a subdirectory.** The reusable workflows in
 `tree-sitter/workflows` (`release.yml`, `package-npm.yml`, `package-crates.yml`) have no input
@@ -276,18 +283,21 @@ for a grammar in a subdirectory. Two options:
    repository. Editors that fetch grammars by repository URL + revision then get the usual
    layout.
 
-Option 1 is enough to start; option 2 is worth it once editor integrations are published.
+Option 1 is what `release.yml` does; option 2 is worth it once editor integrations are published.
 
 ---
 
 ## 8. Releases and versioning
 
-- Your commits already follow Conventional Commits (Zed's commit-message instruction), so
-  **release-please in manifest mode** fits: one release PR per package, versions and
-  changelogs derived from commit scopes (`feat(tree-sitter): …`). Extra version files
-  (`Cargo.toml`, `tree-sitter.json`) can be listed per package.
-- Alternative: Changesets, which needs a changeset file per change but is independent of
-  commit messages.
+- **One version for all three packages**, released together as `vX.Y.Z` with one root
+  `CHANGELOG.md`. A BNF change regenerates all three at once, so separate versions would
+  mostly move in step anyway, and one version keeps the release flow as simple as `tptp`'s.
+  `.github/scripts/version.sh` prints the version (failing if any file disagrees) or sets it
+  everywhere (`package.json` ×3, `tree-sitter.json`, `CMakeLists.txt`, `Makefile`).
+- **A release is a merged pull request labelled `release`**, as in `tptp`: the version bump
+  and its CHANGELOG section are reviewed in the pull request, and merging publishes. The bot
+  (`tptp.yml`) opens these for new `tptp` releases; for anything else, run `version.sh X.Y.Z`,
+  add the CHANGELOG section, and label the pull request.
 - npm names: `tree-sitter-tptp` (tree-sitter convention, keep exactly), `codemirror-lang-tptp`
   (community convention; `@codemirror/` is reserved for official packages), `monaco-tptp`.
 
@@ -303,7 +313,7 @@ From your NixOS configuration (nixpkgs pinned at `55bfb4d`, 2026-10-14):
 |---|---|---|
 | direnv + nix-direnv, fish integration | `shell/cli-tools.nix` | `use flake` in `.envrc`, as in your `latex`/`slides` templates |
 | Zed with `load_direnv = "shell_hook"` | `dev/zed.nix` | picks up the devshell automatically; later: load the grammar as a dev extension |
-| git, jj, gh (`jj pr`) | `shell/jj.nix`, `cli-tools.nix` | nothing to add |
+| git, gh | `cli-tools.nix` | nothing to add (the repository uses plain git) |
 | nix-ld (`stdenv.cc.cc.lib`, `zlib`, `openssl`) | `dev/foreign-binaries.nix` | lets downloaded binaries run (see 9.3) |
 | podman | `dev/podman.nix` | not needed |
 | Elixir 1.20 on OTP 29 (`beamToolchain` overlay) | `dev/beam-toolchain.nix` | see the version note in 9.2 |
@@ -395,7 +405,7 @@ the `beamToolchain` overlay from your private NixOS flake.
 
 ### 9.6 First steps
 
-1. Repository and devshell: `jj git init --colocate`, `flake.nix`, `.envrc`, `direnv allow`.
+1. Repository and devshell: `git init`, `flake.nix`, `.envrc`, `direnv allow`.
 2. Root workspace: `package.json` (`"private": true`), `pnpm-workspace.yaml` with
    `packages: [packages/*]` and `allowBuilds: { tree-sitter: true }` (pnpm 12 fails the
    install on unreviewed build scripts).
@@ -406,7 +416,7 @@ the `beamToolchain` overlay from your private NixOS flake.
 4. `packages/codemirror-lang-tptp`: copy of `codemirror/lang-example` without `.git`,
    `EXAMPLE` renamed in `package.json`, `src/index.ts`, `test/test.js`; own `LICENSE`.
 5. `gen/`: `mix new gen --app lang_tptp_gen --module LangTptp`, `tptp` as dependency
-   (`branch: "main"`, pinned by `mix.lock`, `TPTP_PATH` override), check that
+   (from Hex, pinned by `mix.lock`), check that
    `Tptp.Bnf.read!/1` works from there.
 6. `monaco-tptp` waits until the generator emits a first Monarch tokenizer.
 
@@ -414,12 +424,13 @@ the `beamToolchain` overlay from your private NixOS flake.
 
 ## 10. Open decisions
 
-1. **Generator interface:** depend on `Tptp.Bnf` internals (pinned commit) or add a versioned
-   JSON export to `tptp`. The export is better if `tptp` goes to Hex without exposing
+1. **Generator interface:** depend on `Tptp.Bnf` internals (currently: the Hex
+   release, pinned by `mix.lock`) or add a versioned JSON export to `tptp`. The export is better if `tptp` goes to Hex without exposing
    `Tptp.Bnf`, or if other consumers appear.
 2. **OTP version** shared with `tptp` (28 or 29).
 3. **tree-sitter CLI source:** nixpkgs (0.26.11) or npm (0.27.1).
 4. **Monaco:** Monarch only, or Monarch + tree-sitter semantic tokens.
 5. **Scope:** TPTP + TSTP only, or also SZS output lines.
 6. **tree-sitter distribution:** publish from the subdirectory or mirror to a standalone repo.
-7. **Licence** of the monorepo, and how the BNF-derived grammars are attributed to TPTP World.
+7. ~~**Licence**~~ Decided: MIT for the repository and every package (`LICENSE`), with `NOTICE`
+   attributing the BNF-derived grammars to the TPTP World. Each package carries copies of both.

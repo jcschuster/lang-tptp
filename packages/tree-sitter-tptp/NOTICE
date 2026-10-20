@@ -1,0 +1,19 @@
+lang-tptp is licensed under the MIT licence in LICENSE. Its grammars are derived from
+material of the TPTP World, which that licence does not cover.
+
+    The TPTP is copyrighted 1993-onwards, by Geoff Sutcliffe & Christian Suttner.
+    Verbatim redistribution of the TPTP and parts of the TPTP is permitted provided
+    that the redistribution is clearly attributed to the TPTP. Distribution of any
+    modified version or modified part of the TPTP requires permission.
+
+        -- https://tptp.org/cgi-bin/SeeTPTP?Category=Documents&File=ReadMe
+
+The tree-sitter grammar (grammar.js and the parser generated from it), the Lezer
+grammar (tptp.grammar and the parser generated from it), the Monarch tokenizer
+(monarch.ts) and the highlighting rules are generated from the TPTP syntax BNF,
+https://github.com/TPTPWorld/SyntaxBNF, by `mix lang_tptp.gen`
+(https://github.com/jcschuster/lang-tptp). The BNF is read from the copy that the
+`tptp` Hex package vendors; each package records the BNF version it was generated
+from under "tptp": {"bnf": ...} in its package.json.
+
+TPTP World is the work of Geoff Sutcliffe. See https://tptp.org.

@@ -1,0 +1,283 @@
+========================================
+Type declaration
+========================================
+
+tff(t, type, age: person > $int).
+
+---
+
+(TPTP_file
+  (tff_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (tff_atom_typing
+      (constant
+        (functor
+          (lower_word)))
+      (tff_mapping_type
+        (tff_atomic_type
+          (type_constant
+            (type_functor
+              (lower_word))))
+        (tff_atomic_type
+          (defined_type
+            (dollar_word)))))))
+
+========================================
+Product type
+========================================
+
+tff(t, type, pair: ( $int * $int ) > $o).
+
+---
+
+(TPTP_file
+  (tff_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (tff_atom_typing
+      (constant
+        (functor
+          (lower_word)))
+      (tff_mapping_type
+        (tff_xprod_type
+          (tff_atomic_type
+            (defined_type
+              (dollar_word)))
+          (tff_atomic_type
+            (defined_type
+              (dollar_word))))
+        (tff_atomic_type
+          (defined_type
+            (dollar_word)))))))
+
+========================================
+Polymorphic type
+========================================
+
+tff(t, type, nil: !>[A: $tType] : list(A)).
+
+---
+
+(TPTP_file
+  (tff_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (tff_atom_typing
+      (constant
+        (functor
+          (lower_word)))
+      (tf1_quantified_type
+        (type_quantifier)
+        (tff_variable_list
+          (tff_typed_variable
+            (variable
+              (upper_word))
+            (tff_atomic_type
+              (defined_type
+                (dollar_word)))))
+        (tff_atomic_type
+          (type_functor
+            (lower_word))
+          (tff_type_arguments
+            (tff_atomic_type
+              (variable
+                (upper_word)))))))))
+
+========================================
+Arithmetic
+========================================
+
+tff(a, axiom, ! [X: $int] : $less(X, $sum(X, 1))).
+
+---
+
+(TPTP_file
+  (tff_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (tff_quantified_formula
+      (tff_quantifier
+        (fof_quantifier))
+      (tff_variable_list
+        (tff_typed_variable
+          (variable
+            (upper_word))
+          (tff_atomic_type
+            (defined_type
+              (dollar_word)))))
+      (tff_defined_plain
+        (defined_functor
+          (dollar_word))
+        (tff_arguments
+          (variable
+            (upper_word))
+          (tff_defined_plain
+            (defined_functor
+              (dollar_word))
+            (tff_arguments
+              (variable
+                (upper_word))
+              (integer))))))))
+
+========================================
+Let
+========================================
+
+tff(l, axiom, $let(c: $int, c := 3, $greater(c, 2))).
+
+---
+
+(TPTP_file
+  (tff_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (tff_defined_plain
+      (txf_let
+        (tff_atom_typing
+          (constant
+            (functor
+              (lower_word)))
+          (tff_atomic_type
+            (defined_type
+              (dollar_word))))
+        (txf_let_defn
+          (tff_plain_atomic
+            (constant
+              (functor
+                (lower_word))))
+          (integer))
+        (tff_defined_plain
+          (defined_functor
+            (dollar_word))
+          (tff_arguments
+            (tff_plain_atomic
+              (constant
+                (functor
+                  (lower_word))))
+            (integer)))))))
+
+========================================
+Conditional
+========================================
+
+tff(c, axiom, $ite(p, q, r)).
+
+---
+
+(TPTP_file
+  (tff_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (tff_defined_plain
+      (defined_functor
+        (dollar_word))
+      (tff_arguments
+        (tff_plain_atomic
+          (constant
+            (functor
+              (lower_word))))
+        (tff_plain_atomic
+          (constant
+            (functor
+              (lower_word))))
+        (tff_plain_atomic
+          (constant
+            (functor
+              (lower_word))))))))
+
+========================================
+Tuple equality
+========================================
+
+tff(t, axiom, [a, b] = [a, b]).
+
+---
+
+(TPTP_file
+  (tff_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (tff_defined_infix
+      (txf_tuple
+        (tff_arguments
+          (tff_plain_atomic
+            (constant
+              (functor
+                (lower_word))))
+          (tff_plain_atomic
+            (constant
+              (functor
+                (lower_word))))))
+      (txf_tuple
+        (tff_arguments
+          (tff_plain_atomic
+            (constant
+              (functor
+                (lower_word))))
+          (tff_plain_atomic
+            (constant
+              (functor
+                (lower_word)))))))))
+
+========================================
+Subtype
+========================================
+
+tff(s, type, nat << $int).
+
+---
+
+(TPTP_file
+  (tff_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (tff_subtype
+      (constant
+        (functor
+          (lower_word)))
+      (defined_constant
+        (defined_functor
+          (dollar_word))))))
+
+========================================
+Numbers
+========================================
+
+tff(n, axiom, p(0, -1, 1/2, -3/4, 1.5, -2.5e10, 1E-3)).
+
+---
+
+(TPTP_file
+  (tff_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (tff_plain_atomic
+      (functor
+        (lower_word))
+      (tff_arguments
+        (integer)
+        (integer)
+        (rational)
+        (rational)
+        (real)
+        (real)
+        (real)))))
