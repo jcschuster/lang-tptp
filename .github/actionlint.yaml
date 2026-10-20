@@ -1,0 +1,6 @@
+# The workflows pass single-quoted scripts to `nix develop --command bash -c`, to be
+# expanded inside the devshell (see .shellcheckrc).
+paths:
+  .github/workflows/**/*.yml:
+    ignore:
+      - "SC2016:"

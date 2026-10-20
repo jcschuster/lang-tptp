@@ -1,0 +1,197 @@
+========================================
+Lambda and application
+========================================
+
+thf(l, axiom, ( ^ [X: i] : ( f @ X ) ) = g).
+
+---
+
+(TPTP_file
+  (thf_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (thf_defined_infix
+      (thf_quantified_formula
+        (thf_quantification
+          (th0_quantifier)
+          (thf_variable_list
+            (thf_typed_variable
+              (variable
+                (upper_word))
+              (constant
+                (functor
+                  (lower_word))))))
+        (thf_apply_formula
+          (constant
+            (functor
+              (lower_word)))
+          (variable
+            (upper_word))))
+      (constant
+        (functor
+          (lower_word))))))
+
+========================================
+Choice binder
+========================================
+
+thf(c, axiom, ( @+ [X: i] : ( p @ X ) ) = c).
+
+---
+
+(TPTP_file
+  (thf_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (thf_defined_infix
+      (thf_quantified_formula
+        (thf_quantification
+          (th0_quantifier)
+          (thf_variable_list
+            (thf_typed_variable
+              (variable
+                (upper_word))
+              (constant
+                (functor
+                  (lower_word))))))
+        (thf_apply_formula
+          (constant
+            (functor
+              (lower_word)))
+          (variable
+            (upper_word))))
+      (constant
+        (functor
+          (lower_word))))))
+
+========================================
+Polymorphic constant
+========================================
+
+thf(b, axiom, ( !! @ ( ^ [X: i] : $true ) )).
+
+---
+
+(TPTP_file
+  (thf_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (thf_apply_formula
+      (th1_defined_term)
+      (thf_quantified_formula
+        (thf_quantification
+          (th0_quantifier)
+          (thf_variable_list
+            (thf_typed_variable
+              (variable
+                (upper_word))
+              (constant
+                (functor
+                  (lower_word))))))
+        (defined_constant
+          (defined_functor
+            (dollar_word)))))))
+
+========================================
+Connective as term
+========================================
+
+thf(t, axiom, ( (&) @ $true @ $false )).
+
+---
+
+(TPTP_file
+  (thf_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (thf_apply_formula
+      (thf_apply_formula
+        (thf_conn_term
+          (assoc_connective))
+        (defined_constant
+          (defined_functor
+            (dollar_word))))
+      (defined_constant
+        (defined_functor
+          (dollar_word))))))
+
+========================================
+Let with application
+========================================
+
+thf(l, axiom, $let(g: i > i, g @ X := X, g @ c = c)).
+
+---
+
+(TPTP_file
+  (thf_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (thf_let
+      (thf_atom_typing
+        (constant
+          (functor
+            (lower_word)))
+        (thf_mapping_type
+          (constant
+            (functor
+              (lower_word)))
+          (constant
+            (functor
+              (lower_word)))))
+      (thf_let_defn
+        (thf_apply_formula
+          (constant
+            (functor
+              (lower_word)))
+          (variable
+            (upper_word)))
+        (variable
+          (upper_word)))
+      (thf_apply_formula
+        (constant
+          (functor
+            (lower_word)))
+        (thf_defined_infix
+          (constant
+            (functor
+              (lower_word)))
+          (constant
+            (functor
+              (lower_word))))))))
+
+========================================
+Sequent
+========================================
+
+thf(s, axiom, [a] --> [b]).
+
+---
+
+(TPTP_file
+  (thf_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (thf_sequent
+      (thf_tuple
+        (thf_formula_list
+          (constant
+            (functor
+              (lower_word)))))
+      (thf_tuple
+        (thf_formula_list
+          (constant
+            (functor
+              (lower_word))))))))

@@ -1,0 +1,56 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: cachix/install-nix-action@v31
+      - name: mix test
+        run: |
+          nix develop --command bash -euo pipefail -c '
+            cd gen
+            mix local.hex --force
+            mix deps.get
+            mix format --check-formatted
+            mix compile --warnings-as-errors
+            mix test
+          '
+
+  tree-sitter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: cachix/install-nix-action@v31
+      - name: The packages agree on their version
+        run: nix develop --command .github/scripts/version.sh
+
+      - name: tree-sitter test and wasm build
+        working-directory: packages/tree-sitter-tptp
+        run: |
+          nix develop --command bash -euo pipefail -c '
+            tree-sitter test
+            tree-sitter build --wasm
+          '
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tree-sitter-tptp.wasm
+          path: packages/tree-sitter-tptp/tree-sitter-tptp.wasm
+
+  js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: cachix/install-nix-action@v31
+      - name: pnpm build and test
+        run: |
+          nix develop --command bash -euo pipefail -c '
+            pnpm install --frozen-lockfile
+            pnpm -r run build
+            pnpm -r test
+          '

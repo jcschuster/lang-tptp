@@ -1,41 +1,80 @@
-# Booleans
+# FOF statement
 
-#t
-#f
-
-==>
-
-Program(Boolean, Boolean)
-
-# Identifiers
-
-one
-Two_Three
+fof(ax1, axiom, ! [X] : p(X)).
 
 ==>
 
-Program(Identifier, Identifier)
+TPTPFile(FofAnnotated(fof,"(",Name(LowerWord),",",FormulaRole(LowerWord),",",FofQuantifiedFormula(FofQuantifier("!"),"[",FofVariableList(Variable(UpperWord)),"]",":",FofPlainTerm(Functor(LowerWord),"(",FofArguments(Variable(UpperWord)),")")),")","."))
 
-# Strings
+# Statement keywords as names and atoms
 
-"hello"
-"one\"\\two"
-
-==>
-
-Program(String, String)
-
-# Applications
-
-(begin
-  (when #t
-    (print (concat "hello" " " "world")))
-  (print "DONE"))
+fof(fof, axiom, fof).
 
 ==>
 
-Program(Application(
-  Identifier,
-  Application(Identifier, Boolean, Application(
-    Identifier, Application(Identifier, String, String, String)))
-  Application(Identifier, String)))
+TPTPFile(FofAnnotated(fof,"(",Name(LowerWord),",",FormulaRole(LowerWord),",",FofPlainTerm(Constant(Functor(LowerWord))),")","."))
+
+# Source keywords as parent names
+
+fof(i, plain, p, inference(rule, [], [file, inference])).
+
+==>
+
+TPTPFile(FofAnnotated(fof,"(",Name(LowerWord),",",FormulaRole(LowerWord),",",FofPlainTerm(Constant(Functor(LowerWord))),Annotations(",",InferenceRecord(inference,"(",InferenceRule(LowerWord),",",GeneralList("[","]"),",",Parents("[",ParentList(ParentInfo(Name(LowerWord)),",",ParentInfo(Name(LowerWord))),"]"),")")),")","."))
+
+# Reserved $-words as language markers
+
+fof(l, plain, p, inference(r, [], [a:[$fof(p), $fot(a)]])).
+
+==>
+
+TPTPFile(FofAnnotated(fof,"(",Name(LowerWord),",",FormulaRole(LowerWord),",",FofPlainTerm(Constant(Functor(LowerWord))),Annotations(",",InferenceRecord(inference,"(",InferenceRule(LowerWord),",",GeneralList("[","]"),",",Parents("[",ParentList(ParentInfo(Name(LowerWord),ParentDetails(":",GeneralTerm(GeneralList("[",GeneralTerms(GeneralTerm("$fof","(",FofPlainTerm(Constant(Functor(LowerWord))),")"),",",GeneralTerm("$fot","(",FofPlainTerm(Constant(Functor(LowerWord))),")")),"]"))))),"]"),")")),")","."))
+
+# Let is reserved
+
+tff(l, axiom, $let(c: $int, c := 3, $greater(c, 2))).
+
+==>
+
+TPTPFile(TffAnnotated(tff,"(",Name(LowerWord),",",FormulaRole(LowerWord),",",TffDefinedPlain(TxfLet("$let","(",TffAtomTyping(Constant(Functor(LowerWord)),":",TffAtomicType(DefinedType(DollarWord))),",",TxfLetDefn(TffPlainAtomic(Constant(Functor(LowerWord))),":=",Integer),",",TffDefinedPlain(DefinedFunctor(DollarWord),"(",TffArguments(TffPlainAtomic(Constant(Functor(LowerWord))),",",Integer),")"),")")),")","."))
+
+# Long conjunction is flat
+
+fof(c, axiom, a & b & c & d).
+
+==>
+
+TPTPFile(FofAnnotated(fof,"(",Name(LowerWord),",",FormulaRole(LowerWord),",",FofAndFormula(FofPlainTerm(Constant(Functor(LowerWord))),"&",FofPlainTerm(Constant(Functor(LowerWord))),"&",FofPlainTerm(Constant(Functor(LowerWord))),"&",FofPlainTerm(Constant(Functor(LowerWord)))),")","."))
+
+# Numbers
+
+tff(n, axiom, p(0, -1, 1/2, -3/4, 1.5, -2.5e10, 1E-3)).
+
+==>
+
+TPTPFile(TffAnnotated(tff,"(",Name(LowerWord),",",FormulaRole(LowerWord),",",TffPlainAtomic(Functor(LowerWord),"(",TffArguments(Integer,",",Integer,",",Rational,",",Rational,",",Real,",",Real,",",Real),")"),")","."))
+
+# Include
+
+include('Axioms/GRP001-0.ax', [a, b]).
+
+==>
+
+TPTPFile(Include(include,"(",FileName(SingleQuoted),IncludeOptionals(",",FormulaSelection("[",NameList(Name(LowerWord),",",Name(LowerWord)),"]")),")","."))
+
+# Comments
+
+% line
+/* block ** */ cnf(c, axiom, p | ~ q).
+
+==>
+
+TPTPFile(Comment,Comment,CnfAnnotated(cnf,"(",Name(LowerWord),",",FormulaRole(LowerWord),",",CnfDisjunction(FofPlainTerm(Constant(Functor(LowerWord))),"|","~",FofPlainTerm(Constant(Functor(LowerWord)))),")","."))
+
+# THF lambda
+
+thf(l, axiom, ( ^ [X: i] : ( f @ X ) ) = g).
+
+==>
+
+TPTPFile(ThfAnnotated(thf,"(",Name(LowerWord),",",FormulaRole(LowerWord),",",ThfDefinedInfix("(",ThfQuantifiedFormula(ThfQuantification(Th0Quantifier("^"),"[",ThfVariableList(ThfTypedVariable(Variable(UpperWord),":",Constant(Functor(LowerWord)))),"]",":"),"(",ThfApplyFormula(Constant(Functor(LowerWord)),"@",Variable(UpperWord)),")"),")","=",Constant(Functor(LowerWord))),")","."))

@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "description": "TPTP language support for CodeMirror",
   "scripts": {
-    "test": "mocha test/test.js",
-    "prepare": "rollup -c"
+    "test": "mocha test/test.js test/fixtures.js",
+    "build": "rollup -c && tsc -p tsconfig.json --declaration --emitDeclarationOnly --outDir dist",
+    "prepare": "pnpm run build"
   },
   "type": "module",
   "main": "dist/index.cjs",
@@ -17,6 +18,7 @@
   "sideEffects": false,
   "dependencies": {
     "@codemirror/language": "^6.0.0",
+    "@lezer/common": "^1.5.3",
     "@lezer/highlight": "^1.0.0",
     "@lezer/lr": "^1.0.0"
   },
@@ -29,5 +31,13 @@
     "tslib": "^2.8.1",
     "typescript": "^5.8.3"
   },
-  "license": "MIT"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcschuster/lang-tptp.git",
+    "directory": "packages/codemirror-lang-tptp"
+  },
+  "license": "MIT",
+  "tptp": {
+    "bnf": "9.3.1.6"
+  }
 }

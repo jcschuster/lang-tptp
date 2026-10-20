@@ -1,0 +1,209 @@
+========================================
+File source
+========================================
+
+fof(a1, axiom, p, file('SYN000+1.p', a1)).
+
+---
+
+(TPTP_file
+  (fof_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (fof_plain_term
+      (constant
+        (functor
+          (lower_word))))
+    (annotations
+      (file_source
+        (file_name
+          (single_quoted))
+        (file_info
+          (name
+            (lower_word)))))))
+
+========================================
+Inference record with parents
+========================================
+
+cnf(f1, plain, $false, inference(resolution, [status(thm)], [a1, n2])).
+
+---
+
+(TPTP_file
+  (cnf_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (cnf_disjunction
+      (fof_defined_plain_term
+        (defined_constant
+          (defined_functor
+            (dollar_word)))))
+    (annotations
+      (inference_record
+        (inference_rule
+          (lower_word))
+        (general_list
+          (general_terms
+            (general_term
+              (general_function
+                (lower_word)
+                (general_terms
+                  (general_term
+                    (lower_word)))))))
+        (parents
+          (parent_list
+            (parent_info
+              (name
+                (lower_word)))
+            (parent_info
+              (name
+                (lower_word)))))))))
+
+========================================
+Source keywords as parent names
+========================================
+
+fof(i, plain, p, inference(rule, [], [file, inference, introduced])).
+
+---
+
+(TPTP_file
+  (fof_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (fof_plain_term
+      (constant
+        (functor
+          (lower_word))))
+    (annotations
+      (inference_record
+        (inference_rule
+          (lower_word))
+        (general_list)
+        (parents
+          (parent_list
+            (parent_info
+              (name
+                (lower_word)))
+            (parent_info
+              (name
+                (lower_word)))
+            (parent_info
+              (name
+                (lower_word)))))))))
+
+========================================
+Introduced source
+========================================
+
+fof(d, definition, q, introduced(definition, [new_symbols(definition, [q])], [])).
+
+---
+
+(TPTP_file
+  (fof_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (fof_plain_term
+      (constant
+        (functor
+          (lower_word))))
+    (annotations
+      (internal_source
+        (intro_type
+          (lower_word))
+        (general_list
+          (general_terms
+            (general_term
+              (general_function
+                (lower_word)
+                (general_terms
+                  (general_term
+                    (lower_word))
+                  (general_term
+                    (general_list
+                      (general_terms
+                        (general_term
+                          (lower_word))))))))))
+        (parents)))))
+
+========================================
+Language markers in parent details
+========================================
+
+fof(l, plain, p, inference(r, [], [a1:[$fof(p), $fot(a), $cnf(p)]])).
+
+---
+
+(TPTP_file
+  (fof_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (fof_plain_term
+      (constant
+        (functor
+          (lower_word))))
+    (annotations
+      (inference_record
+        (inference_rule
+          (lower_word))
+        (general_list)
+        (parents
+          (parent_list
+            (parent_info
+              (name
+                (lower_word))
+              (parent_details
+                (general_term
+                  (general_list
+                    (general_terms
+                      (general_term
+                        (fof_plain_term
+                          (constant
+                            (functor
+                              (lower_word)))))
+                      (general_term
+                        (fof_plain_term
+                          (constant
+                            (functor
+                              (lower_word)))))
+                      (general_term
+                        (cnf_disjunction
+                          (fof_plain_term
+                            (constant
+                              (functor
+                                (lower_word)))))))))))))))))
+
+========================================
+Unknown source
+========================================
+
+cnf(u, axiom, p, unknown).
+
+---
+
+(TPTP_file
+  (cnf_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (cnf_disjunction
+      (fof_plain_term
+        (constant
+          (functor
+            (lower_word)))))
+    (annotations
+      (name
+        (lower_word)))))

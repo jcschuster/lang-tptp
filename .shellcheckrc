@@ -1,0 +1,4 @@
+# SC2001: `sed 's/^/  /'` indents multi-line text, which parameter expansion cannot.
+# SC2016: the workflows pass single-quoted scripts to `nix develop --command bash -c`,
+#         to be expanded inside the devshell, not by the runner's shell.
+disable=SC2001,SC2016

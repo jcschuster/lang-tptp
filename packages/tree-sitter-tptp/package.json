@@ -10,6 +10,9 @@
   },
   "funding": "",
   "license": "MIT",
+  "tptp": {
+    "bnf": "9.3.1.6"
+  },
   "author": {
     "name": "Johannes Schuster",
     "email": "johannes.c.schuster@proton.me",
@@ -24,6 +27,7 @@
     "tptp"
   ],
   "files": [
+    "NOTICE",
     "grammar.js",
     "tree-sitter.json",
     "binding.gyp",

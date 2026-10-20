@@ -1,0 +1,2 @@
+# Files on which the parsers are known to disagree, one per line:
+# path relative to the TPTP root<TAB>reason

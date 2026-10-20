@@ -2,14 +2,16 @@
   "name": "lang-tptp",
   "private": true,
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Editor language support for TPTP, generated from the TPTP SyntaxBNF",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "pnpm -r run build",
+    "test": "pnpm -r test",
+    "generate": "cd gen && mix lang_tptp.gen && cd ../packages/tree-sitter-tptp && tree-sitter generate",
+    "differential": "cd gen && mix run ../tools/differential/differential.exs"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",

@@ -1,0 +1,65 @@
+========================================
+Line comment
+========================================
+
+% a comment
+fof(a, axiom, p). % trailing
+
+---
+
+(TPTP_file
+  (comment)
+  (fof_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (fof_plain_term
+      (constant
+        (functor
+          (lower_word)))))
+  (comment))
+
+========================================
+Block comment
+========================================
+
+/* block
+   comment ** with stars */
+fof(b, axiom, /* inline */ q).
+
+---
+
+(TPTP_file
+  (comment)
+  (fof_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (comment)
+    (fof_plain_term
+      (constant
+        (functor
+          (lower_word))))))
+
+========================================
+Empty block comment
+========================================
+
+/**/
+fof(c, axiom, r).
+
+---
+
+(TPTP_file
+  (comment)
+  (fof_annotated
+    (name
+      (lower_word))
+    (formula_role
+      (lower_word))
+    (fof_plain_term
+      (constant
+        (functor
+          (lower_word))))))

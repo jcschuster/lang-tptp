@@ -1,0 +1,76 @@
+name: corpus
+
+# Runs tools/differential: do `Tptp`, tree-sitter and Lezer accept and reject the same
+# files of the TPTP library? Pull requests that touch a grammar read one file in five;
+# the nightly job reads every Problems and Axioms file up to the runner's 5 MB cap.
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "gen/**"
+      - "packages/*/grammar.js"
+      - "packages/*/src/**"
+      - "tools/differential/**"
+      - ".github/workflows/corpus.yml"
+
+env:
+  TPTP: ${{ github.workspace }}/TPTP
+  TPTP_VERSION: "9.3.1"
+  MAX_SIZE: "5000000"
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: cachix/install-nix-action@v31
+
+      # As in tptp's corpus job: only Problems and Axioms are extracted, and files over
+      # the size cap are deleted at once, since the runner would skip them anyway.
+      - name: Download the TPTP library
+        run: |
+          curl -sSfL "https://tptp.org/TPTP/Distribution/TPTP-v$TPTP_VERSION.tgz" -o TPTP.tgz
+          mkdir -p "$TPTP"
+          tar -xzf TPTP.tgz --strip-components=1 -C "$TPTP" \
+            --wildcards "TPTP-v$TPTP_VERSION/Problems/*" "TPTP-v$TPTP_VERSION/Axioms/*"
+          rm TPTP.tgz
+          find "$TPTP" -type f -size +"$MAX_SIZE"c -delete
+          df -h /
+
+      - name: Build the parsers
+        run: |
+          nix develop --command bash -euo pipefail -c '
+            cd gen
+            mix local.hex --force
+            mix local.rebar --force
+            mix deps.get
+            mix compile
+            cd ..
+            pnpm install --frozen-lockfile
+            pnpm --filter codemirror-lang-tptp run build
+          '
+
+      - name: Compare one file in five
+        if: github.event_name == 'pull_request'
+        run: |
+          nix develop --command bash -c \
+            'cd gen && mix run ../tools/differential/differential.exs --sample 5 --max-size "$MAX_SIZE" --report "$GITHUB_WORKSPACE/differential.tsv"'
+
+      - name: Compare the whole library
+        if: github.event_name != 'pull_request'
+        run: |
+          nix develop --command bash -c \
+            'cd gen && mix run ../tools/differential/differential.exs --max-size "$MAX_SIZE" --report "$GITHUB_WORKSPACE/differential.tsv"'
+
+      - name: Keep the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: differential-report
+          path: differential.tsv
+          if-no-files-found: ignore

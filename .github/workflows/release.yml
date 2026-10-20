@@ -1,0 +1,110 @@
+name: release
+
+# Publishes the version in the packages (see .github/scripts/version.sh) to npm, and
+# creates its GitHub release and tag v<version> with tree-sitter-tptp.wasm attached,
+# when a pull request labelled `release` is merged into main. The release notes are
+# that version's CHANGELOG section as merged.
+#
+# tptp.yml opens such pull requests when a new `tptp` changes the grammars. For any
+# other release: run `.github/scripts/version.sh X.Y.Z`, add a `## [X.Y.Z] - date`
+# section to CHANGELOG.md, open a pull request, and label it `release`.
+#
+# npm needs either an NPM_TOKEN secret (a granular access token that can publish the
+# three packages), or trusted publishing configured for this workflow on npmjs.com for
+# each package, which npm only allows once a package exists. Run workflow_dispatch to
+# retry a release that failed part-way: versions already on npm are skipped.
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'release'))
+    runs-on: ubuntu-latest
+    env:
+      REF: ${{ github.event.pull_request.merge_commit_sha || github.sha }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ env.REF }}
+
+      - uses: cachix/install-nix-action@v31
+
+      - name: Read the version, and refuse one already released
+        id: version
+        run: |
+          version=$(nix develop --command .github/scripts/version.sh)
+          if git ls-remote --exit-code --tags origin "refs/tags/v$version"; then
+            echo "::error::v$version is already tagged"
+            exit 1
+          fi
+          awk -v heading="## [$version] " '
+            index($0, heading) == 1 { on = 1; next }
+            /^## \[/ { on = 0 }
+            on' CHANGELOG.md > "$RUNNER_TEMP/notes.md"
+          if ! grep -q '[^[:space:]]' "$RUNNER_TEMP/notes.md"; then
+            echo "::error::CHANGELOG.md has no section for $version"
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Test what is about to be published
+        run: |
+          nix develop --command bash -euo pipefail -c '
+            cd gen
+            mix local.hex --force
+            mix local.rebar --force
+            mix deps.get
+            cd ..
+            .github/scripts/test-all.sh
+            cd packages/tree-sitter-tptp
+            tree-sitter generate
+            test -z "$(git status --porcelain)" || { git status --short; exit 1; }
+          '
+
+      - name: Build tree-sitter-tptp.wasm
+        working-directory: packages/tree-sitter-tptp
+        run: nix develop --command tree-sitter build --wasm
+
+      - name: Publish to npm
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: ${{ !github.event.repository.private }}
+        run: |
+          nix develop --command bash -euo pipefail -c '
+            if [ -n "$NPM_TOKEN" ]; then
+              printf "//registry.npmjs.org/:_authToken=%s\n" "$NPM_TOKEN" > "$RUNNER_TEMP/.npmrc"
+              export NPM_CONFIG_USERCONFIG="$RUNNER_TEMP/.npmrc"
+            fi
+            for package in tree-sitter-tptp codemirror-lang-tptp monaco-tptp; do
+              # Asked from outside the workspace, whose devEngines npm would refuse.
+              if (cd "$RUNNER_TEMP" && npm view "$package@$VERSION" version) >/dev/null 2>&1; then
+                echo "$package@$VERSION is already on npm"
+              else
+                (cd "packages/$package" && npm publish --access public)
+              fi
+            done
+          '
+
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          gh release create "v$VERSION" --target "$REF" \
+            --title "v$VERSION" --notes-file "$RUNNER_TEMP/notes.md" \
+            packages/tree-sitter-tptp/tree-sitter-tptp.wasm
