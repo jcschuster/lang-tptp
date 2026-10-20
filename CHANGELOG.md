@@ -9,6 +9,14 @@ expose: node names and queries, the exported JavaScript API, and Monaco token cl
 The TPTP BNF a release was generated from is recorded in each package's `package.json`
 under `tptp.bnf`; it moves when TPTP moves, not when these packages do.
 
+## [0.1.1] - 2026-10-20
+
+### Changed
+
+- No changes to what the packages contain. This is the first release published through
+  npm trusted publishing (OIDC) instead of an access token; like 0.1.0, every package
+  carries a provenance attestation.
+
 ## [0.1.0] - 2026-10-20
 
 ### Added
@@ -22,4 +30,5 @@ under `tptp.bnf`; it moves when TPTP moves, not when these packages do.
 
 All three are generated from TPTP BNF v9.3.1.6 through `tptp` 0.3.0.
 
+[0.1.1]: https://github.com/jcschuster/lang-tptp/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/jcschuster/lang-tptp/releases/tag/v0.1.0

@@ -9,10 +9,11 @@ name: release
 # other release: run `.github/scripts/version.sh X.Y.Z`, add a `## [X.Y.Z] - date`
 # section to CHANGELOG.md, open a pull request, and label it `release`.
 #
-# npm needs either an NPM_TOKEN secret (a granular access token that can publish the
-# three packages), or trusted publishing configured for this workflow on npmjs.com for
-# each package, which npm only allows once a package exists. Run workflow_dispatch to
-# retry a release that failed part-way: versions already on npm are skipped.
+# npm authenticates this workflow through trusted publishing (OIDC): each package has
+# a trusted publisher on npmjs.com for jcschuster/lang-tptp, workflow release.yml, with
+# `npm publish` allowed. An NPM_TOKEN secret, if set, is only a fallback. Run
+# workflow_dispatch to retry a release that failed part-way: versions already on npm
+# are skipped.
 
 on:
   pull_request:
@@ -96,6 +97,26 @@ jobs:
                 echo "$package@$VERSION is already on npm"
               else
                 (cd "packages/$package" && npm publish --access public)
+              fi
+            done
+
+            # npm can accept a publish and still hold the version back, for review or as
+            # a staged version (tree-sitter-tptp 0.1.0 went live 11 minutes after the
+            # publish). Say so, rather than report a release nobody can install yet.
+            for package in tree-sitter-tptp codemirror-lang-tptp monaco-tptp; do
+              live=false
+              for _ in $(seq 12); do
+                if (cd "$RUNNER_TEMP" && npm view --prefer-online "$package@$VERSION" version) >/dev/null 2>&1; then
+                  live=true
+                  break
+                fi
+                sleep 10
+              done
+              if [ "$live" = true ]; then
+                echo "- \`$package@$VERSION\` is live on npm" >> "$GITHUB_STEP_SUMMARY"
+              else
+                echo "::warning::$package@$VERSION is not on npm two minutes after publishing. npm may be holding it for review or as a staged version: see https://www.npmjs.com/package/$package and approve it under Staged Packages if asked."
+                echo "- \`$package@$VERSION\` is **not live yet**: check npmjs.com, Staged Packages" >> "$GITHUB_STEP_SUMMARY"
               fi
             done
           '

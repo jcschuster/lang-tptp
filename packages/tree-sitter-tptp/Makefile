@@ -1,6 +1,6 @@
 LANGUAGE_NAME := tree-sitter-tptp
 HOMEPAGE_URL := https://github.com/jcschuster/lang-tptp
-VERSION := 0.1.0
+VERSION := 0.1.1
 DESCRIPTION := TPTP grammar for tree-sitter, generated from the TPTP SyntaxBNF
 
 # repository

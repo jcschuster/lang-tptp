@@ -1,6 +1,6 @@
 {
   "name": "monaco-tptp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TPTP language support for Monaco, generated from the TPTP SyntaxBNF",
   "type": "module",
   "main": "dist/index.js",
