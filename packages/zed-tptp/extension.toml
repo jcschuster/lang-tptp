@@ -1,0 +1,12 @@
+id = "tptp"
+name = "TPTP"
+version = "0.1.1"
+schema_version = 1
+authors = ["Johannes Schuster <johannes.c.schuster@proton.me>"]
+description = "TPTP language support, generated from the TPTP SyntaxBNF"
+repository = "https://github.com/jcschuster/lang-tptp"
+
+[grammars.tptp]
+repository = "https://github.com/jcschuster/lang-tptp"
+rev = "3705bba2193f4a06a2805c11212e57e38508f779"
+path = "packages/tree-sitter-tptp"

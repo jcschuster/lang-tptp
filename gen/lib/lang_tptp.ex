@@ -35,10 +35,12 @@ defmodule LangTptp do
     ir = IR.build()
     table = Highlights.load!(ir)
 
+    highlights = Highlights.render_tree_sitter(table, ir)
+
     [
       {"packages/tree-sitter-tptp/grammar.js", TreeSitter.render(ir)},
-      {"packages/tree-sitter-tptp/queries/highlights.scm",
-       Highlights.render_tree_sitter(table, ir)},
+      {"packages/tree-sitter-tptp/queries/highlights.scm", highlights},
+      {"packages/zed-tptp/languages/tptp/highlights.scm", highlights},
       {"packages/codemirror-lang-tptp/src/tptp.grammar", Lezer.render(ir)},
       {"packages/codemirror-lang-tptp/src/highlight.ts",
        Highlights.render_lezer(table, ir, &Lezer.name(ir, &1))},
