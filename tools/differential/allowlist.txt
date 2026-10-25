@@ -1,2 +1,4 @@
 # Files on which the parsers are known to disagree, one per line:
 # path relative to the TPTP root<TAB>reason
+Problems/LCL/LCL663+1.020.p	nesting exceeds the Lezer parse-stack cap (@lezer/lr Rec.CutDepth, 2800 frames, not configurable); parses with the cap lifted
+Problems/SWW/SWW645_2.p	nesting exceeds the Lezer parse-stack cap (@lezer/lr Rec.CutDepth, 2800 frames, not configurable); parses with the cap lifted
