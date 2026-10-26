@@ -28,9 +28,10 @@ defmodule Differential do
     lists = write_lists(files, jobs)
 
     reference = timed("Tptp", fn -> reference_rejects(files) end)
-    tree_sitter = timed("tree-sitter", fn -> in_parallel(lists, &tree_sitter_rejects/1) end)
+    tree_sitter_lib = build_tree_sitter()
+    tree_sitter = timed("tree-sitter", fn -> in_parallel(lists, &tree_sitter_rejects(&1, tree_sitter_lib)) end)
     lezer = timed("Lezer", fn -> in_parallel(lists, &lezer_rejects/1) end)
-    Enum.each(lists, &File.rm/1)
+    Enum.each([tree_sitter_lib | lists], &File.rm/1)
 
     allowed = allowlist()
 
@@ -106,15 +107,42 @@ defmodule Differential do
     |> MapSet.new()
   end
 
+  # Compiles the parser once, so the parallel `tree-sitter parse` jobs do not each compile
+  # it into the same cache path at the same time.
+  defp build_tree_sitter do
+    lib = Path.join(System.tmp_dir!(), "lang-tptp-differential-#{System.unique_integer([:positive])}.so")
+
+    case System.cmd("tree-sitter", ["build", "--output", lib],
+           cd: Path.join(@root, "packages/tree-sitter-tptp"),
+           stderr_to_stdout: true
+         ) do
+      {_, 0} -> lib
+      {out, status} -> raise "tree-sitter build exited with #{status}:\n#{out}"
+    end
+  end
+
   # `tree-sitter parse --quiet` prints one line per file whose tree has ERROR or MISSING.
-  defp tree_sitter_rejects(list) do
-    {out, _status} =
-      System.cmd("tree-sitter", ["parse", "--quiet", "--paths", list],
+  # It exits 1 on any such file, so the status cannot tell a finished run from an aborted
+  # one; the `--stat` summary's parse count can.
+  defp tree_sitter_rejects(list, lib) do
+    {out, status} =
+      System.cmd("tree-sitter", ["parse", "--quiet", "--stat", "--lib-path", lib, "--lang-name", "tptp", "--paths", list],
         cd: Path.join(@root, "packages/tree-sitter-tptp"),
         stderr_to_stdout: true
       )
 
-    for line <- String.split(out, "\n"),
+    lines = String.split(out, "\n")
+    expected = list |> File.read!() |> String.split("\n", trim: true) |> length()
+    parsed =
+      case Regex.run(~r/^Total parses: (\d+);/m, out) do
+        [_, n] -> String.to_integer(n)
+        nil -> 0
+      end
+
+    if parsed != expected,
+      do: raise("tree-sitter parsed #{parsed} of #{expected} files in #{list} (exit #{status}):\n#{out}")
+
+    for line <- lines,
         line =~ ~r/\((ERROR|MISSING)/,
         [path | _] = String.split(line, "\t"),
         into: MapSet.new(),
