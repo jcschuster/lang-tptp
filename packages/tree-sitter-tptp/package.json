@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-tptp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "TPTP grammar for tree-sitter, generated from the TPTP SyntaxBNF",
   "type": "module",
   "repository": {
@@ -11,7 +11,7 @@
   "funding": "",
   "license": "MIT",
   "tptp": {
-    "bnf": "9.3.1.6"
+    "bnf": "10.0.0.0"
   },
   "author": {
     "name": "Johannes Schuster",
