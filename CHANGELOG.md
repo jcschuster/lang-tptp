@@ -9,6 +9,18 @@ expose: node names and queries, the exported JavaScript API, and Monaco token cl
 The TPTP BNF a release was generated from is recorded in each package's `package.json`
 under `tptp.bnf`; it moves when TPTP moves, not when these packages do.
 
+## [0.1.2] - 2026-11-07
+
+### Changed
+
+- Regenerated from TPTP BNF v10.0.0.0 (through `tptp` 0.3.1); it was v9.3.1.6. Each
+  package records the BNF version under `tptp.bnf` in its `package.json`.
+  The BNF records what changed:
+
+  ```text
+  
+  ```
+
 ## [0.1.1] - 2026-10-20
 
 ### Changed
@@ -30,5 +42,6 @@ under `tptp.bnf`; it moves when TPTP moves, not when these packages do.
 
 All three are generated from TPTP BNF v9.3.1.6 through `tptp` 0.3.0.
 
+[0.1.2]: https://github.com/jcschuster/lang-tptp/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/jcschuster/lang-tptp/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/jcschuster/lang-tptp/releases/tag/v0.1.0

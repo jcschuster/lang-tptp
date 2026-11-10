@@ -21,7 +21,7 @@ defmodule LangTptp.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:tptp, "~> 0.3.0"},
+      {:tptp, "~> 0.3.1"},
       {:stream_data, "~> 1.1", only: :test}
     ]
   end
