@@ -18,7 +18,7 @@ on:
 
 env:
   TPTP: ${{ github.workspace }}/TPTP
-  TPTP_VERSION: "9.3.1"
+  TPTP_VERSION: "10.0.0"
   MAX_SIZE: "5000000"
 
 jobs:
