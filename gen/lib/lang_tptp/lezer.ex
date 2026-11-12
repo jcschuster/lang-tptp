@@ -136,8 +136,6 @@ defmodule LangTptp.Lezer do
     }
 
     @external propSource tptpHighlighting from "./highlight"
-
-    @detectDelim
     """
   end
 
