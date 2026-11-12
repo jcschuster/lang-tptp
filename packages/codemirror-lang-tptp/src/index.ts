@@ -7,6 +7,7 @@ import {
   foldInside,
   continuedIndent,
 } from "@codemirror/language"
+import {NodeProp} from "@lezer/common"
 
 /// The node names of the six annotated-formula statements and `include`, as the
 /// generated grammar names them.
@@ -19,6 +20,9 @@ export const tptpLanguage = LRLanguage.define({
   name: "tptp",
   parser: parser.configure({
     props: [
+      // No named rule opens and closes with a bracket, so Lezer's `@detectDelim` would set none of these.
+      NodeProp.closedBy.add({"(": [")"], "[": ["]"], "{": ["}"]}),
+      NodeProp.openedBy.add({")": ["("], "]": ["["], "}": ["{"]}),
       indentNodeProp.add({
         [statements]: continuedIndent(),
       }),

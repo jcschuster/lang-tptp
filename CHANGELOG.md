@@ -9,6 +9,13 @@ expose: node names and queries, the exported JavaScript API, and Monaco token cl
 The TPTP BNF a release was generated from is recorded in each package's `package.json`
 under `tptp.bnf`; it moves when TPTP moves, not when these packages do.
 
+## [0.1.3] - 2026-11-12
+
+### Fixed
+
+- `codemirror-lang-tptp`: `(`, `[` and `{` now carry `closedBy`/`openedBy`, so CodeMirror
+  matches brackets through the syntax tree. `@detectDelim` set none of them.
+
 ## [0.1.2] - 2026-11-07
 
 ### Changed

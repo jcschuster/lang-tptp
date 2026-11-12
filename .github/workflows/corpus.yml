@@ -18,7 +18,6 @@ on:
 
 env:
   TPTP: ${{ github.workspace }}/TPTP
-  TPTP_VERSION: "9.3.1"
   MAX_SIZE: "5000000"
 
 jobs:
@@ -31,9 +30,11 @@ jobs:
       - uses: cachix/install-nix-action@v31
 
       # As in tptp's corpus job: only Problems and Axioms are extracted, and files over
-      # the size cap are deleted at once, since the runner would skip them anyway.
+      # the size cap are deleted at once, since the runner would skip them anyway. The
+      # library release goes with the BNF; tptp-bump.sh keeps .github/tptp-library current.
       - name: Download the TPTP library
         run: |
+          TPTP_VERSION=$(cat .github/tptp-library)
           curl -sSfL "https://tptp.org/TPTP/Distribution/TPTP-v$TPTP_VERSION.tgz" -o TPTP.tgz
           mkdir -p "$TPTP"
           tar -xzf TPTP.tgz --strip-components=1 -C "$TPTP" \

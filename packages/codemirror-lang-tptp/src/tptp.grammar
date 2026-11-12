@@ -467,5 +467,3 @@ FileName { atomic_word }
 }
 
 @external propSource tptpHighlighting from "./highlight"
-
-@detectDelim
