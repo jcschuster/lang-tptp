@@ -52,6 +52,10 @@ sed -i -E "s/\{:tptp, \"~> [^\"]+\"/{:tptp, \"~> $new\"/" gen/mix.exs
 new_path=$(ls "$PWD"/gen/deps/tptp/priv/bnf/SyntaxBNF-v*)
 bnf=${new_path##*SyntaxBNF-v}
 
+# The TPTP library vX.Y.Z goes with BNF vX.Y.Z.N. It lives outside .github/workflows,
+# where the bot's token may not push.
+echo "${bnf%.*}" >.github/tptp-library
+
 if [ "$bnf" = "$old_bnf" ]; then
   breaks=""
 else
